@@ -30,7 +30,7 @@ router.post("/employees", (req, res) => {
 // Update an existing employee
 router.put("/employees", (req, res) => {
     let sqlQuery = "UPDATE employees SET firstName = ?, lastName = ?, salary = ? WHERE id = ?";
-    let load = [req.body.firstName, req.body.lastName, req.body.salary, req.query.id];
+    let load = [req.body.firstName, req.body.lastName, req.body.salary, req.body.id];
     let query = dbConnection.query(sqlQuery, load).then(([result, fields]) => {
             res.json(result);
         }).catch((err) => {
@@ -41,8 +41,7 @@ router.put("/employees", (req, res) => {
 // Remove an existing employee
 router.delete("/employees", (req, res) => {
     let sqlQuery = "DELETE FROM employees WHERE id= ?";
-
-    let query = dbConnection.query(sqlQuery, req.query.id).then(([result, fields]) => {
+    let query = dbConnection.query(sqlQuery, req.body.id).then(([result, fields]) => {
             res.json(result);
         }).catch((err) => {
             console.log(err);
