@@ -44,7 +44,7 @@ function EmployeeTable() {
         {title: "ID", field: "id", editable: false},
         {title: "FirstName", field: "firstName"},
         {title: "LastName", field: "lastName"},
-        {title: "Salary", field: "salary"},
+        {title: "Salary", field: "salary", type: "currency", align: "left"},
     ]
 
     // callback function to process update action
