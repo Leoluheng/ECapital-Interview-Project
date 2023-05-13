@@ -3,12 +3,13 @@ const dbConnection = require("../data/mysqlConnection");
 const router = express.Router();
 
 // Retrieve all employees
-router.get("/employees", (req, res) => {
+router.get("/employees", (req, res, next) => {
     let sqlQuery = "SELECT * FROM employees";
     let query = dbConnection.execute(sqlQuery).then(([result, fields]) => {
             res.json(result);
         }).catch((err) => {
             console.log(err);
+            next(err);
         });
 });
 
