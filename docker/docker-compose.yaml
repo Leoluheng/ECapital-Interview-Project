@@ -4,6 +4,7 @@ services:
     build:
       context: ./server
       dockerfile: ./docker/Dockerfile
+    # image: leoluheng/nodejs-api:demo
     container_name: express-back
     ports:
       - '5000:5000'
@@ -15,6 +16,7 @@ services:
   mysqldb:
     build:
       context: ./db
+    # image: leoluheng/mysql-server:demo
     container_name: mysql-server
     ports:
       - '3306:3306'
@@ -24,6 +26,7 @@ services:
     build:
       context: ./client
       dockerfile: ./docker/Dockerfile
+    # image: leoluheng/react-front:demo
     container_name: react-front
     ports:
       - '8080:8080'
