@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./server
+      dockerfile: ./docker/Dockerfile
+    container_name: express-back
+    ports:
+      - '5000:5000'
+    networks:
+      - ecapital-internal
+      - ecapital-external
+    depends_on:
+      - mysqldb
+  mysqldb:
+    build:
+      context: ./db
+    container_name: mysql-server
+    ports:
+      - '3306:3306'
+    networks:
+      - ecapital-internal
+  frontend:
+    build:
+      context: ./client
+      dockerfile: ./docker/Dockerfile
+    container_name: react-front
+    ports:
+      - '8080:8080'
+    networks:
+      - ecapital-external
+networks:
+  ecapital-internal:
+    driver: bridge
+  ecapital-external:
+    driver: bridge
+    
